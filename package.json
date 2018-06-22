@@ -1,0 +1,62 @@
+{
+  "name": "react-drop-aria",
+  "version": "0.1.0",
+  "description": "React Component File Uploader",
+  "author": "Kento75",
+  "license": "MIT",
+  "keywords": [
+    "react-component",
+    "react-file-uploader",
+    "react",
+    "japanese"
+  ],
+  "options": {
+    "mocha": "--require scripts/mocha_runner src/**/tests/**/*.js"
+  },
+  "scripts": {
+    "build": "babel --plugins transform-es2015-modules-umd src --ignore tests --out-dir ./dist",
+    "lint": "eslint ./src",
+    "lintfix": "eslint ./src --fix",
+    "testonly": "mocha $npm_package_options_mocha",
+    "test": "npm run lint && npm run testonly",
+    "test-watch": "npm run testonly -- --watch --watch-extensions js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.3.15",
+    "@storybook/addon-links": "^3.3.15",
+    "@storybook/addons": "^3.3.15",
+    "@storybook/react": "^3.3.15",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-umd": "^6.6.5",
+    "babel-polyfill": "^6.7.4",
+    "babel-preset-stage-2": "^6.5.0",
+    "chai": "^4.1.2",
+    "enzyme": "^3.2.0",
+    "eslint": "^4.14.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-react": "^7.5.1",
+    "jsdom": "^8.1.0",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-addons-test-utils": "^15.6.2",
+    "sinon": "^1.17.3"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.6.1",
+    "node-sass": "^4.7.2",
+    "prop-types": "^15.6.1"
+  }
+}
