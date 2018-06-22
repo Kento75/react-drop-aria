@@ -6,10 +6,7 @@ import sinon from 'sinon';
 
 import MyComponent from '../index';
 
-// Demo tests
 
-// Shallow Rendering
-// https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md
 describe('Shallow Rendering', () => {
 
     it('to have three `.icon-test`s', () => {
@@ -27,8 +24,6 @@ describe('Shallow Rendering', () => {
 
 });
 
-// Full DOM Rendering
-// https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md
 describe('Full DOM Rendering', () => {
 
     it('allows us to set props', () => {
@@ -47,8 +42,6 @@ describe('Full DOM Rendering', () => {
 
 });
 
-// Static Rendered Markup
-// https://github.com/airbnb/enzyme/blob/master/docs/api/render.md
 describe('Static Rendered Markup', () => {
 
     it('renders three `.icon-test`s', () => {

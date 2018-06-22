@@ -8,6 +8,7 @@ install:
 test_script:
   - node --version
   - npm --version
+  - npm run -s lint
   - npm run custom-build
 
 build: off
