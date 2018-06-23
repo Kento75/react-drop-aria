@@ -1,38 +1,32 @@
 
 .simple-react-file-upload {
     font-family:'PT Sans Narrow', sans-serif;
-    background-color:#2162a3;
-
+    background-color:rgb(33, 98, 163);
     background-image:-webkit-linear-gradient(top, #373a3d, #313437);
     background-image:-moz-linear-gradient(top, #373a3d, #313437);
     background-image:linear-gradient(top, #373a3d, #313437);
-
     width:250px;
     padding:30px;
     border-radius:3px;
-
-   
     box-shadow: 0 0 10px rgba(0, 0, 0, 0);
 }
 
-.simple-react-file-drop{
-    background-color:#0986a3;
+.simple-react-file-drop {
+    background: rgb(30, 77, 177);
     padding: 40px 50px;
     margin-bottom: 30px;
+    color: #FFF;
     border: 20px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
-    border-image: url('../img/border-image.png');
     text-align: center;
     text-transform: uppercase;
-
     font-size:16px;
     font-weight:bold;
 }
 
-.simple-react-file-drop a{
-
+.simple-react-file-drop a {
     padding:12px 26px;
-    color:#fff;
+    color:rgb(255, 255, 255);
     font-size:14px;
     border-radius:2px;
     cursor:pointer;
@@ -40,11 +34,11 @@
     margin-top:12px;
     line-height:1;
 }
-
+/*
 .simple-react-file-drop a:hover{
-    background-color:#0986a3;
-/*    background-color: rgba(0, 0, 0, 0); */
+    background-color:#2162a3;
 }
+*/
 
 .simple-react-file-drop input{
     display:none;
@@ -53,19 +47,19 @@
 .simple-react-file-upload ul{
     list-style:none;
     margin:0 -30px;
-    border-top:1px solid #2b2e31;
-    border-bottom:1px solid #3d4043;
+    border-top:1px solid rgb(43, 46, 49);
+    border-bottom:1px solid rgb(61, 64, 67);
 }
 
 .simple-react-file-upload ul li{
 
-    background-color:#333639;
+    background-color:rgb(51, 54, 57);
 
     background-image:-webkit-linear-gradient(top, #333639, #303335);
     background-image:-moz-linear-gradient(top, #333639, #303335);
     background-image:linear-gradient(top, #333639, #303335);
-    border-top:1px solid #3d4043;
-    border-bottom:1px solid #2b2e31;
+    border-top:1px solid rgb(61, 64, 67);
+    border-bottom:1px solid rgb(43, 46, 49);
     padding:15px;
     height: 52px;
 
@@ -80,7 +74,7 @@
     width: 200px;
     overflow: hidden;
     white-space: nowrap;
-    color: #EEE;
+    color: rgb(238, 238, 238);
     font-size: 16px;
     font-weight: bold;
     position: absolute;
@@ -96,7 +90,7 @@
 .simple-react-file-upload ul li i{
     font-weight: normal;
     font-style:normal;
-    color:#7f7f7f;
+    color:rgb(127, 127, 127);
     display:block;
 }
 
@@ -131,9 +125,3 @@ div .file-type {
     font-size: 11px;
    
 }
-
-
-
-
-
-

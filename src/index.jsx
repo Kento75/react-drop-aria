@@ -2,126 +2,136 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/* style & icons */
 import './assets/css/style.css';
 import FileIcon from './assets/img/file.png';
 
-  
+
+/**
+ * main components
+ */
 class FileInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            files: []
-        };
-        this.handleFileSelect = this.handleFileSelect.bind(this);
-    }
-    componentDidMount() {
-        window.addEventListener('simple-react-file-upload', this.handleFileUpload);
-        window.addEventListener('dragover', this.handleFileUpload);
-        document.getElementById('simple-react-file-upload').addEventListener('drop', this.handleFileUpload);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      files: []
+    };
+      this.handleFileSelect = this.handleFileSelect.bind(this);
+  }
+  componentDidMount() {
+    window.addEventListener('simple-react-file-upload', this.handleFileUpload);
+    window.addEventListener('dragover', this.handleFileUpload);
+    document.getElementById('simple-react-file-upload').addEventListener('drop', this.handleFileUpload);
+  }
 
-    handleFileSelect() {
-        this.refs.fileUploader.click();
-    }
+  handleFileSelect() {
+    this.refs.fileUploader.click();
+  }
 
-    handleFileUpload = (e) => {
-        e.preventDefault();       
-        let {target} = e;
-        if (this.props.multiple) {
-            let files = this.state.files;
-            Object.keys(target.files).map(key => {
-                files.push(target.files[key]);
-            });
-            this.setState({
-                files: files
-            });
-            this.props.onChange(files);
+  handleFileUpload = (e) => {
+    e.preventDefault();       
+    let {target} = e;
+    if (this.props.multiple) {
+      let files = this.state.files;
+      Object.keys(target.files).map(key => {
+        files.push(target.files[key]);
+  　  });
+      this.setState({
+        files: files
+      });
+    　this.props.onChange(files);
 
-        } else {
-            let newFile = [];
-            newFile.push(target.files[0]);
-            this.setState({
-                files: newFile
-            });
-            this.props.onChange(newFile);
-        }
-
+    } else {
+      let newFile = [];
+      newFile.push(target.files[0]);
+      this.setState({
+        files: newFile
+      });
+    　this.props.onChange(newFile);
     }
 
-    handleDeleteFile = (index) => {
-        let {files} = this.state;
-        if (files.length === 1) {
-            files = [];
-        } else {
-            delete files[index];
-        }
-        this.setState({files:files});
-        this.props.onChange(files);
+  }
+
+  handleDeleteFile = (index) => {
+    let {files} = this.state;
+    if (files.length === 1) {
+  　  files = [];
+　  } else {
+      delete files[index];
+  　}
+    this.setState({
+      files: files
+    });
+    this.props.onChange(files);
+　}
+
+  handleFileDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let files = e.dataTransfer.files; 
+    if (!this.props.multiple) {
+      let newFile = [];
+      newFile.push(e.dataTransfer.files[0]);
+      this.setState({
+        files: newFile
+      });
+      this.props.onChange(newFile);     
+    } else {
+      let prevFile = this.state.files;
+      Object.keys(files).map(key => {
+        prevFile.push(files[key]);
+      });
+      this.setState({
+          files: prevFile
+      });
+      this.props.onChange(prevFile);
     }
-
-    handleFileDrop = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        let files = e.dataTransfer.files; 
-        if (!this.props.multiple) {
-            let newFile = [];
-            newFile.push(e.dataTransfer.files[0]);
-            this.setState({
-                files: newFile
-            });
-            this.props.onChange(newFile);     
-        } else {
-            let prevFile = this.state.files;
-            Object.keys(files).map(key => {
-                prevFile.push(files[key]);
-            });
-            this.setState({files: prevFile});
-            this.props.onChange(prevFile);
-        }
-        return false;
-    }
+    return false;
+  }
 
 
-    render() {
-        let { files } = this.state;
-        let fileList = this.state.files && Object.keys(files).map(key => {
-            return (
-            <li key={key}>
-            <div className='simple-react-file-uploader-icon' id="simple-react-file-uploader-icon">
-                <img className='file'  src={FileIcon} alt={files[key].name} id="file"/>
-                {/* <p className="file-type">{files[key].type}</p> */}
-               <p className="file-name">{files[key].name}</p>
-              <span onClick={() => this.handleDeleteFile(key)}></span>
-            </div>
+  render() {
+    let { files } = this.state;
+    let fileList = this.state.files && Object.keys(files).map(key => {
+      return (
+        <li key={key}>
+          <div className='simple-react-file-uploader-icon' id="simple-react-file-uploader-icon">
+            <img className='file'  src={FileIcon} alt={files[key].name} id="file"/>
+            <p className="file-name">{files[key].name}</p>
+            <span onClick={() => this.handleDeleteFile(key)}></span>
+          </div>
         </li>
-           );
-        });
+      );
+    });
 
-        return (
-          <div id="simple-react-file-upload" className={this.props.className ? `${this.props.className} simple-react-file-upload` : 'simple-react-file-upload'}>
-			<div className='simple-react-file-drop'  id="simple-react-file-drop" onDrop={this.handleFileDrop} onDragOver={this.handleFileDrop}>
-                Drop Here
-				<a onClick={this.handleFileSelect}>Browse</a>
-				<input type="file" ref="fileUploader" accept={this.props.accept} onChange={this.handleFileUpload} multiple={this.props.multiple ? true : false} name="upl" />
-			</div>
-			<ul>
-               {fileList}   
-			</ul>
-		</div>
-        );
-    }
+    return (
+      <div id="simple-react-file-upload" className={this.props.className ? `${this.props.className} simple-react-file-upload` : 'simple-react-file-upload'}>
+        <div className='simple-react-file-drop'  id="simple-react-file-drop" onDrop={this.handleFileDrop} onDragOver={this.handleFileDrop}>
+          Drop Here
+          <a onClick={this.handleFileSelect}>Browse</a>
+          <input type="file" ref="fileUploader" accept={this.props.accept} onChange={this.handleFileUpload} multiple={this.props.multiple ? true : false} name="upl" />
+        </div>
+        <ul>
+          {fileList}   
+        </ul>
+      </div>
+    );
+  }
 }
 
+/**
+ * 型指定
+ */
 FileInput.propTypes = {
+    // 複数ファイル選択モードON・OFF
     multiple: PropTypes.bool,
-    accept:PropTypes.string,
-    onChange:PropTypes.func.isRequired,
-    className:PropTypes.string
+    // アップロードファイル名
+    accept: PropTypes.string,
+    // 変更時、発火処理 
+    onChange: PropTypes.func.isRequired,
+    // cssクラス
+    className: PropTypes.string
 
 };
 
 export default FileInput;
-
-
-
-
