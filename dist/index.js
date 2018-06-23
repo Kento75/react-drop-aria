@@ -198,7 +198,7 @@
           _react2.default.createElement(
             'div',
             { className: 'simple-react-file-drop', id: 'simple-react-file-drop', onDrop: this.handleFileDrop, onDragOver: this.handleFileDrop },
-            '\u3000Drop Here',
+            'Drop Here',
             _react2.default.createElement(
               'a',
               { onClick: this.handleFileSelect },
